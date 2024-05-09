@@ -3,27 +3,30 @@ import { ChatContainer, MessageList, MessageBubble, InputContainer, InputField, 
 import runChat from '../../api/googleAi';
 
 const ChatBot = () => {
-  const [messages, setMessages] = useState([]);
+  const [chatHistory, setChatHistory] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== '') {
-      setMessages([...messages, { role: 'user', text: inputValue }]);
-      setInputValue('');
+      const userMessage = { role: 'user', text: inputValue };
+      setChatHistory([...chatHistory, userMessage]);
 
       try {
         const response = await runChat(inputValue);
-        setMessages([...messages, { role: 'assistant', text: response }]);
+        const assistantMessage = { role: 'assistant', text: response };
+        setChatHistory([...chatHistory, userMessage, assistantMessage]);
       } catch (error) {
         console.error('Erro ao enviar mensagem:', error);
       }
+
+      setInputValue('');
     }
   };
 
   return (
     <ChatContainer>
       <MessageList>
-        {messages.map((message, index) => (
+        {chatHistory.map((message, index) => (
           <MessageBubble key={index} role={message.role}>
             {message.text}
           </MessageBubble>
