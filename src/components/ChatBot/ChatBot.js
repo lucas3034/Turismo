@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChatContainer, MessageList, MessageBubble, InputContainer, InputField, SendButton } from './ChatBot.styled';
-import { runChat } from '../../api/googleAi';
+import runChat from '../../api/googleAi';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
