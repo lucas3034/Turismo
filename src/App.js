@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { colors } from './styles';
+import Header from './components/Header/Header';
+import TravelInfo from './components/TravelInfo/Travelinfo';
+import ChatBot from './components/ChatBot/ChatBot';
+import Carousel from './components/Carousel/Carousel';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: linear-gradient(to bottom, ${colors.white}, ${colors.gray});
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const AppContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <AppContainer>
+        <Header />
+        <TravelInfo />
+        <Carousel />
+        <ChatBot />
+      </AppContainer>
+    </>
   );
 }
 
