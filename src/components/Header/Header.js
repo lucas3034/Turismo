@@ -1,6 +1,5 @@
-// src/components/Header/Header.js
 import React, { useState } from 'react';
-import { HeaderContainer, Logo, NavLinks, NavLink } from './Header.styled';
+import { HeaderContainer, Logo, NavLinks, NavLink, Title } from './Header.styled';
 import logo from './logo.png';
 import Modal from '../Modal/Modal';
 
@@ -26,6 +25,7 @@ const Header = () => {
     <>
       <HeaderContainer>
         <Logo src={logo} alt="PontesTur" />
+        <Title>PONTES TUR</Title>
         <NavLinks>
           {Object.keys(modalContent).map((link) => (
             <NavLink key={link} onClick={() => openModal(modalContent[link])}>

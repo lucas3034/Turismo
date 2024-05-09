@@ -12,7 +12,7 @@ export const TravelText = styled.div`
   margin-right: 2rem;
 
   h2 {
-    color: #007bff;
+    color: #008000;
   }
 
   p {
@@ -28,7 +28,7 @@ export const DestinationList = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   h3 {
-    color: #007bff;
+    color: #008000;
     margin-bottom: 1rem;
   }
 

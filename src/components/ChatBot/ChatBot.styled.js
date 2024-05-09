@@ -18,7 +18,7 @@ export const MessageList = styled.div`
 `;
 
 export const MessageBubble = styled.div`
-  background-color: ${(props) => (props.role === 'user' ? '#007bff' : '#e9ecef')};
+  background-color: ${(props) => (props.role === 'user' ? '#008000 ' : '#e9ecef')};
   color: ${(props) => (props.role === 'user' ? '#fff' : '#333')};
   padding: 0.5rem 1rem;
   border-radius: 1rem;
@@ -41,7 +41,7 @@ export const InputField = styled.input`
 `;
 
 export const SendButton = styled.button`
-  background-color: #007bff;
+  background-color: #008000 ;
   color: #fff;
   border: none;
   border-radius: 5px;
