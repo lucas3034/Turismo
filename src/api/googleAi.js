@@ -42,7 +42,19 @@ const chat = model.startChat({
   history: [],
 });
 
+const DELAY_BETWEEN_REQUESTS_MS = 1000; // 1 segundo de atraso
+let lastRequestTime = 0;
+
 module.exports = async function runChat(userInput) {
+  const now = Date.now();
+  const timeSinceLastRequest = now - lastRequestTime;
+
+  if (timeSinceLastRequest < DELAY_BETWEEN_REQUESTS_MS) {
+    const delay = DELAY_BETWEEN_REQUESTS_MS - timeSinceLastRequest;
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+
   const result = await chat.sendMessage(userInput);
+  lastRequestTime = Date.now();
   return result.response.text();
 };

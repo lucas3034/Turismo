@@ -5,11 +5,14 @@ import runChat from '../../api/googleAi';
 const ChatBot = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [isRequestInProgress, setIsRequestInProgress] = useState(false);
 
   const handleSendMessage = async () => {
-    if (inputValue.trim() !== '') {
+    if (inputValue.trim() !== '' && !isRequestInProgress) {
+      setIsRequestInProgress(true);
       const userMessage = { role: 'user', text: inputValue };
       setChatHistory([...chatHistory, userMessage]);
+      setInputValue('');
 
       try {
         const response = await runChat(inputValue);
@@ -17,9 +20,9 @@ const ChatBot = () => {
         setChatHistory([...chatHistory, userMessage, assistantMessage]);
       } catch (error) {
         console.error('Erro ao enviar mensagem:', error);
+      } finally {
+        setIsRequestInProgress(false);
       }
-
-      setInputValue('');
     }
   };
 
@@ -43,8 +46,11 @@ const ChatBot = () => {
               handleSendMessage();
             }
           }}
+          disabled={isRequestInProgress}
         />
-        <SendButton onClick={handleSendMessage}>Enviar</SendButton>
+        <SendButton onClick={handleSendMessage} disabled={isRequestInProgress}>
+          {isRequestInProgress ? 'Enviando...' : 'Enviar'}
+        </SendButton>
       </InputContainer>
     </ChatContainer>
   );
