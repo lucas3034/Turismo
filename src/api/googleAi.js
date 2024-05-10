@@ -42,7 +42,7 @@ const chat = model.startChat({
   history: [],
 });
 
-const DELAY_BETWEEN_REQUESTS_MS = 1000; // 1 segundo de atraso
+const DELAY_BETWEEN_REQUESTS_MS = 5000; // 5 segundos de atraso
 let lastRequestTime = 0;
 
 module.exports = async function runChat(userInput) {

@@ -51,3 +51,18 @@ export const SendButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export const TypingIndicator = styled.span`
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border-top-color: #008000;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChatContainer, MessageList, MessageBubble, InputContainer, InputField, SendButton } from './ChatBot.styled';
 import runChat from '../../api/googleAi';
+import { TypingIndicator } from './ChatBot.styled';
 
 const ChatBot = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isRequestInProgress, setIsRequestInProgress] = useState(false);
+  const [isBotTyping, setIsBotTyping] = useState(false);
 
   const handleSendMessage = async () => {
     if (inputValue.trim() !== '' && !isRequestInProgress) {
@@ -15,6 +17,7 @@ const ChatBot = () => {
       setInputValue('');
 
       try {
+        setIsBotTyping(true); // Iniciar o indicador de digitação
         const response = await runChat(inputValue);
         const assistantMessage = { role: 'assistant', text: response };
         setChatHistory([...chatHistory, userMessage, assistantMessage]);
@@ -22,6 +25,7 @@ const ChatBot = () => {
         console.error('Erro ao enviar mensagem:', error);
       } finally {
         setIsRequestInProgress(false);
+        setIsBotTyping(false); // Parar o indicador de digitação
       }
     }
   };
@@ -34,6 +38,11 @@ const ChatBot = () => {
             {message.text}
           </MessageBubble>
         ))}
+          {isBotTyping && (
+          <MessageBubble role="assistant">
+            Digitando... <TypingIndicator />
+          </MessageBubble>
+        )}
       </MessageList>
       <InputContainer>
         <InputField
