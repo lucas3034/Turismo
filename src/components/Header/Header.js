@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   const modalContent = {
-    Início: 'Bem-vindo à PontesTur, sua agência de viagens preferida!',
+    Início: 'Bem-vindo à Turismo, sua agência de viagens preferida!',
     Sobre: 'Somos uma equipe apaixonada por viajar e ajudar as pessoas a criar memórias inesquecíveis.',
     Destinos: 'Exploramos os melhores destinos ao redor do mundo, proporcionando experiências únicas.',
     Contato: 'Entre em contato conosco para mais informações e Reserve sua próxima aventura!',
@@ -24,8 +24,8 @@ const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <Logo src={logo} alt="PontesTur" />
-        <Title>PONTES TUR</Title>
+        <Logo src={logo} alt="Turismo" />
+        <Title>Turismo</Title>
         <NavLinks>
           {Object.keys(modalContent).map((link) => (
             <NavLink key={link} onClick={() => openModal(modalContent[link])}>
